@@ -1,6 +1,6 @@
 <template>
   <q-card>
-    <card-task-header>Add Task</card-task-header>
+    <card-task-header>Edit Task</card-task-header>
 
     <form @submit.prevent="addTask">
       <q-card-section class="q-pt-none">
@@ -26,15 +26,11 @@
 <script>
 import { mapActions } from 'vuex'
 export default {
-  name: 'AddTask',
+  name: 'EditTask',
+  props: ['task', 'id'],
   data() {
     return {
-      taskToSubmit: {
-        name: '',
-        dueDate: '',
-        dueTime: '',
-        completed: false
-      }
+      taskToSubmit: {}
     }
   },
   components: {
@@ -45,7 +41,7 @@ export default {
     'card-task-actions': require('components/Card/TaskActions.vue').default
   },
   methods: {
-    ...mapActions('tasksStore', ['createTask']),
+    ...mapActions('tasksStore', ['updateTask']),
     addTask() {
       this.$refs.cardName.$refs.name.validate()
       if (!this.$refs.cardName.$refs.name.hasError) {
@@ -53,9 +49,15 @@ export default {
       }
     },
     submitTask() {
-      this.createTask(this.taskToSubmit)
+      this.updateTask({
+        id: this.id,
+        updates: this.taskToSubmit
+      })
       this.$emit('on-close', true)
     }
+  },
+  mounted() {
+    this.taskToSubmit = Object.assign({}, this.task)
   }
 }
 </script>
