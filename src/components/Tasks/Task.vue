@@ -49,8 +49,10 @@ export default {
     ...mapActions('tasksStore', ['updateTask', 'deleteTask']),
     promptToDelete(id) {
       this.$q.dialog({
-        title: 'Alert',
-        message: 'Really want to delete this task?'
+        title: 'Confirm',
+        message: 'Really want to delete this task?',
+        cancel: true,
+        persistent: true
       }).onOk(() => {
         this.deleteTask(id)
       })
