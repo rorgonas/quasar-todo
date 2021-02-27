@@ -40,33 +40,11 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
-  data() {
-    return {
-      tasks: [
-        {
-          id: 1,
-          name: 'Get bananas',
-          completed: false,
-          dueDate: '2019/05/12',
-          dueTime: '18:39'
-        },
-        {
-          id: 2,
-          name: 'Go to shop',
-          completed: false,
-          dueDate: '2019/05/13',
-          dueTime: '20:39'
-        },
-        {
-          id: 3,
-          name: 'Get apples',
-          completed: false,
-          dueDate: '2019/05/15',
-          dueTime: '22:39'
-        }
-      ]
-    }
+  name: 'TodoPage',
+  computed: {
+   ...mapGetters('tasks', ['tasks'])
   }
 }
 </script>
