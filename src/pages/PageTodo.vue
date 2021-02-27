@@ -3,9 +3,9 @@
     <q-list separator>
       <q-item-label header>Todo List</q-item-label>
       <q-item
-        v-for="(task, index) in tasks"
+        v-for="(task, key) in tasks"
         tag="label"
-        :key="index"
+        :key="key"
         :class="!task.completed ? 'bg-orange-1' : 'bg-green-1'"
         v-ripple>
         <q-item-section side top>
