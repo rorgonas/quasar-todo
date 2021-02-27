@@ -18,23 +18,21 @@
     </q-item-section>
 
     <q-item-section>
-      <div class="row">
-        <div class="column justify-center">
-          <q-icon name="event" size="18px" class="q-mr-xs" />
-        </div>
         <div class="column">
-          <q-item-label class="row justify-end">
+          <q-item-label v-show="task.dueDate" class="row justify-end">
+            <q-icon name="event" size="18px" class="q-mr-xs" />
             {{ task.dueDate }}
           </q-item-label>
-          <q-item-label class="row justify-end">
+          <q-item-label v-show="task.dueTime" class="row justify-end">
             <small>{{ task.dueTime}}</small>
           </q-item-label>
         </div>
-      </div>
     </q-item-section>
 
     <q-item-section side>
-      <q-btn @click.stop="promptToDelete(id)" round flat dense color="red" icon="clear" size="16px" />
+      <div class="row">
+        <q-btn @click.stop="promptToDelete(id)" round flat dense color="warning" icon="delete" size="16px" />
+      </div>
     </q-item-section>
   </q-item>
 </template>
@@ -56,7 +54,7 @@ export default {
       }).onOk(() => {
         this.deleteTask(id)
       })
-    }
+    },
   }
 }
 </script>
