@@ -10,7 +10,7 @@
     </q-header>
 
     <q-footer reveal elevated>
-      <q-tabs>
+      <q-tabs align="justify">
         <q-route-tab
           v-for="nav in navs"
           :key="nav.label"
