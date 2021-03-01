@@ -1,8 +1,13 @@
 <template>
   <q-page class="q-pa-md">
+
     <no-tasks
       v-if="!Object.keys(tasksTodo).length && !search"
       class="q-mb-md" />
+
+    <div class="row justify-end">
+      <sort-dropdown />
+    </div>
 
     <p v-if="!Object.keys(tasksTodo).length && !Object.keys(tasksCompleted).length && search">
       No search results
@@ -60,7 +65,8 @@ export default {
     'task': require('components/Tasks/Task.vue').default,
     'add-task': require('components/Tasks/AddTask.vue').default,
     'task-list': require('components/List/Tasks.vue').default,
-    'no-tasks': require('components/Tasks/NoTasks.vue').default
+    'no-tasks': require('components/Tasks/NoTasks.vue').default,
+    'sort-dropdown': require('components/Tools/SortDropdown.vue').default,
   },
   mounted() {
     // Quasar global even but listener

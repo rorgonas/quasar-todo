@@ -13,20 +13,21 @@ const state = {
     },
     'ID2': {
       id: 2,
-      name: 'Go to shop',
+      name: 'Go citrons',
       completed: true,
       dueDate: '2019/05/13',
       dueTime: '20:39'
     },
     'ID3': {
       id: 3,
-      name: 'Get red apples',
+      name: 'Get apples',
       completed: false,
       dueDate: '2019/05/15',
       dueTime: '22:39'
     },
   },
-  search: ''
+  search: '',
+  sort: 'name'
 }
 
 const mutations = {
@@ -42,6 +43,9 @@ const mutations = {
   },
   SET_SEARCH(state, value) {
     state.search = value
+  },
+  SET_SORT(state, value) {
+    state.sort = value
   }
 }
 
@@ -62,22 +66,46 @@ const actions = {
   },
   setSearch({ commit }, value) {
     commit('SET_SEARCH', value)
+  },
+  setSort({ commit }, value) {
+    commit('SET_SORT', value)
   }
 }
 
 const getters = {
-  tasksFiltered: (state) => {
-    let tasksFiltered = {}
+  tasksSorted: (state) => {
+   let tasksSorted = {},
+       keysOrdered = Object.keys(state.tasks)
+
+    keysOrdered.sort((a,b) => {
+      let taskAProp = state.tasks[a][state.sort].toLowerCase(),
+          taskBProp = state.tasks[b][state.sort].toLowerCase()
+
+      if (taskAProp > taskBProp) return 1
+      else if (taskAProp < taskBProp) return -1
+      else return 0
+    })
+
+    keysOrdered.forEach((key) => {
+      tasksSorted[key] = state.tasks[key]
+    })
+
+   return tasksSorted
+  },
+  tasksFiltered: (state, getters) => {
+    let tasksFiltered = {},
+        tasksSorted = getters.tasksSorted
+
     if (state.search) {
-      Object.keys(state.tasks).forEach(function(key) {
-        const task = state.tasks[key]
+      Object.keys(tasksSorted).forEach(function(key) {
+        const task = tasksSorted[key]
         if (task.name.toLowerCase().includes(state.search)) {
           tasksFiltered[key] = task
         }
       })
       return tasksFiltered
     } else {
-      return state.tasks
+      return tasksSorted
     }
   },
   tasksTodo: (state, getters) => {

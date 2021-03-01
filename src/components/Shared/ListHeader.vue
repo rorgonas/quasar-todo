@@ -6,6 +6,7 @@
     :class="bgColor">
     <span class="text-bold text-subtitle1">
       <slot>List Banner</slot>
+      <slot name="action"></slot>
     </span>
   </q-banner>
 </template>
@@ -19,6 +20,7 @@
 
 <style lang="scss">
   .list-header {
+    position: relative;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
   }
