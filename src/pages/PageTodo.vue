@@ -1,10 +1,6 @@
 <template>
   <q-page class="q-pa-md">
 
-    <no-tasks
-      v-if="!Object.keys(tasksTodo).length && !search"
-      class="q-mb-md" />
-
     <div class="row justify-end">
       <sort-dropdown />
     </div>
@@ -13,19 +9,25 @@
       No search results
     </p>
 
-    <task-list
-      v-if="Object.keys(tasksTodo).length"
-      :tasks="tasksTodo"
-      title="Todo"
-      bgColor="bg-orange"
-      class="q-mb-md"/>
+    <div class="relative-position">
+      <no-tasks
+        v-if="!Object.keys(tasksTodo).length && !search"
+        class="q-mb-md" />
 
-    <task-list
-      v-if="Object.keys(tasksCompleted).length"
-      :tasks="tasksCompleted"
-      title="Completed"
-      bgColor="bg-green"
-      class="q-mb-md"/>
+      <task-list
+        v-if="Object.keys(tasksTodo).length"
+        :tasks="tasksTodo"
+        title="Todo"
+        bgColor="bg-orange"
+        class="q-mb-md"/>
+
+      <task-list
+        v-if="Object.keys(tasksCompleted).length"
+        :tasks="tasksCompleted"
+        title="Completed"
+        bgColor="bg-green"
+        class="q-mb-md"/>
+    </div>
 
     <q-dialog v-model="showAddTask" transition-show="scale" transition-hide="scale" persistent>
       <add-task @close="showAddTask = false"></add-task>
