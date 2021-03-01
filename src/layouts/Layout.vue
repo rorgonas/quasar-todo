@@ -2,10 +2,8 @@
   <q-layout view="hHh lpR fFf">
     <q-header elevated>
       <q-toolbar color="primary">
-        <q-toolbar-title class="absolute-center">
-          Awesome Todo
-          <div slot="subtitle">Vue.js Basics</div>
-        </q-toolbar-title>
+        <q-toolbar-title class="col-4">Awesome <strong>Todo</strong></q-toolbar-title>
+        <search class="col-8" />
       </q-toolbar>
     </q-header>
 
@@ -76,6 +74,9 @@ export default {
       ]
     }
   },
+  components: {
+    'search': require('components/Tools/Search.vue').default,
+  }
 }
 </script>
 

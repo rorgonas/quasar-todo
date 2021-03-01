@@ -1,10 +1,15 @@
 <template>
   <q-page class="q-pa-md">
     <no-tasks
-      v-if="!Object.keys(tasksTodo).length"
+      v-if="!Object.keys(tasksTodo).length && !search"
       class="q-mb-md" />
+
+    <p v-if="!Object.keys(tasksTodo).length && !Object.keys(tasksCompleted).length && search">
+      No search results
+    </p>
+
     <task-list
-      v-else
+      v-if="Object.keys(tasksTodo).length"
       :tasks="tasksTodo"
       title="Todo"
       bgColor="bg-orange"
@@ -38,7 +43,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapState } from 'vuex';
 
 export default {
   name: 'TodoPage',
@@ -48,13 +53,14 @@ export default {
     }
   },
   computed: {
-   ...mapGetters('tasksStore', ['tasksTodo', 'tasksCompleted'])
+    ...mapGetters('tasksStore', ['tasksTodo', 'tasksCompleted']),
+    ...mapState('tasksStore', ['search'])
   },
   components: {
     'task': require('components/Tasks/Task.vue').default,
     'add-task': require('components/Tasks/AddTask.vue').default,
     'task-list': require('components/List/Tasks.vue').default,
-    'no-tasks': require('components/Tasks/NoTasks.vue').default,
+    'no-tasks': require('components/Tasks/NoTasks.vue').default
   },
   mounted() {
     // Quasar global even but listener
