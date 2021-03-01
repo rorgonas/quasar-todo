@@ -57,6 +57,7 @@ export default {
     }
   },
   mounted() {
+    // Copy task into a new object
     this.taskToSubmit = Object.assign({}, this.task)
   }
 }

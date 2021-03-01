@@ -85,9 +85,6 @@ export default {
       }).onOk(() => {
         this.deleteTask(id)
       })
-    },
-    editTask() {
-
     }
   }
 }

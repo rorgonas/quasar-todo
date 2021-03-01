@@ -2,6 +2,7 @@ import Vue from 'vue'
 import { uid } from 'quasar'
 
 const state = {
+  showAddTaskModal: false,
   tasks: {
     'ID1': {
       id: 1,
@@ -13,7 +14,7 @@ const state = {
     'ID2': {
       id: 2,
       name: 'Go to shop',
-      completed: false,
+      completed: true,
       dueDate: '2019/05/13',
       dueTime: '20:39'
     },
@@ -58,9 +59,26 @@ const actions = {
 }
 
 const getters = {
-  tasks: (state) => {
-    return state.tasks
-  }
+  tasksTodo: (state) => {
+    let tasks = {}
+    Object.keys(state.tasks).forEach(function(key) {
+      const task = state.tasks[key]
+      if (!task.completed) {
+        tasks[key] = task
+      }
+    });
+    return tasks
+  },
+  tasksCompleted: (state) => {
+    let tasks = {}
+    Object.keys(state.tasks).forEach(function(key) {
+      const task = state.tasks[key]
+      if (task.completed) {
+        tasks[key] = task
+      }
+    });
+    return tasks
+  },
 }
 
 export default {
