@@ -30,27 +30,27 @@ const state = {
 }
 
 const mutations = {
-  updateTask(state, payload) {
+  UPDATE_TASK(state, payload) {
     Object.assign(state.tasks[payload.id], payload.updates)
     // state.tasks[payload.id] = {...state.tasks[payload.id], ...payload.updates}
   },
-  deleteTask(state, id) {
+  DELETE_TASK(state, id) {
     Vue.delete(state.tasks, id)
   },
-  createTask(state, payload) {
+  CREATE_TASK(state, payload) {
     Vue.set(state.tasks, payload.id, payload.task)
   },
-  setSearch(state, value) {
+  SET_SEARCH(state, value) {
     state.search = value
   }
 }
 
 const actions = {
   updateTask({ commit }, payload) {
-    commit('updateTask', payload)
+    commit('UPDATE_TASK', payload)
   },
   deleteTask({ commit }, id) {
-    commit('deleteTask', id)
+    commit('DELETE_TASK', id)
   },
   createTask({ commit }, task) {
     let taskId = uid()
@@ -58,10 +58,10 @@ const actions = {
       id: taskId,
       task: task
     }
-    commit('createTask', payload)
+    commit('CREATE_TASK', payload)
   },
   setSearch({ commit }, value) {
-    commit('setSearch', value)
+    commit('SET_SEARCH', value)
   }
 }
 
