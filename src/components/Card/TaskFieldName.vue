@@ -13,20 +13,13 @@
 </template>
 
 <script>
+import { selectAll } from "src/directives/directive-select-all";
+
 export default {
   name: 'TaskFieldName',
   props: ['name'],
   directives: {
-    selectAll: {
-      bind(el) {
-        let input = el.querySelector('input')
-        input.addEventListener('focus', () => {
-          if (input.value) {
-            input.select()
-          }
-        })
-      }
-    }
+    selectAll
   }
 }
 </script>

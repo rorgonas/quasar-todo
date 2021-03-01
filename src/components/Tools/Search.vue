@@ -3,6 +3,7 @@
       v-model="searchField"
       placeholer="Search"
       standout="bg-teal text-white"
+      v-select-all
       dense>
 
       <template v-slot:append>
@@ -15,6 +16,7 @@
 
 <script>
   import { mapState, mapActions } from 'vuex'
+  import { selectAll } from "src/directives/directive-select-all";
 
   export default {
     name: 'Search',
@@ -31,6 +33,9 @@
     },
     methods: {
       ...mapActions('tasksStore', ['setSearch']),
+    },
+    directives: {
+      selectAll
     }
   }
 </script>
