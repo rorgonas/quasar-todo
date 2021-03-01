@@ -56,7 +56,7 @@ export default {
       this.$emit('on-close', true)
     }
   },
-  mounted() {
+  created() {
     // Copy task into a new object
     this.taskToSubmit = Object.assign({}, this.task)
   }
