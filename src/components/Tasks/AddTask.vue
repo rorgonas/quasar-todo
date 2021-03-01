@@ -2,7 +2,7 @@
   <q-card>
     <card-task-header>Add Task</card-task-header>
 
-    <form @submit.prevent="addTask">
+    <form @submit.prevent="validateTask">
       <q-card-section class="q-pt-none">
 
         <card-task-field-name
@@ -25,8 +25,11 @@
 
 <script>
 import { mapActions } from 'vuex'
+import mixinAddEditTask from 'src/mixins/mixin-add-edit-task'
+
 export default {
   name: 'AddTask',
+  mixins: [mixinAddEditTask],
   data() {
     return {
       taskToSubmit: {
@@ -37,27 +40,12 @@ export default {
       }
     }
   },
-  components: {
-    'card-task-header': require('components/Card/TaskHeader.vue').default,
-    'card-task-field-name': require('components/Card/TaskFieldName.vue').default,
-    'card-task-due-date': require('components/Card/TaskDueDate.vue').default,
-    'card-task-due-time': require('components/Card/TaskDueTime.vue').default,
-    'card-task-actions': require('components/Card/TaskActions.vue').default
-  },
   methods: {
     ...mapActions('tasksStore', ['createTask']),
-    addTask() {
-      this.$refs.cardName.$refs.name.validate()
-      if (!this.$refs.cardName.$refs.name.hasError) {
-        this.submitTask()
-      }
-    },
     submitTask() {
       this.createTask(this.taskToSubmit)
-      this.$emit('on-close', true)
+      this.$emit('close', true)
     }
   }
 }
 </script>
-
-<style lang="scss"></style>

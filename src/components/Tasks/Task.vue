@@ -56,7 +56,7 @@
       <edit-task
         :task='task'
         :id="id"
-        @on-close="showEditTask = false" />
+        @close="showEditTask = false" />
     </q-dialog>
 
   </q-item>

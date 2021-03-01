@@ -28,7 +28,7 @@
       class="q-mb-md"/>
 
     <q-dialog v-model="showAddTask" transition-show="scale" transition-hide="scale" persistent>
-      <add-task @on-close="showAddTask = false"></add-task>
+      <add-task @close="showAddTask = false"></add-task>
     </q-dialog>
 
 
