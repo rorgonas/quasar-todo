@@ -2,6 +2,7 @@
   <q-item
     @click="updateTask({ id: id, updates: { completed: !task.completed }})"
     :class="!task.completed ? 'bg-orange-1' : 'bg-green-1'"
+    v-touch-hold:1000.mouse="openEditTask"
     clickable
     v-ripple>
     <q-item-section side top>
@@ -32,7 +33,7 @@
     <q-item-section side>
       <div class="row">
         <q-btn
-          @click.stop="showEditTask = true"
+          @click.stop="openEditTask"
           round
           flat
           dense
@@ -85,6 +86,9 @@ export default {
       }).onOk(() => {
         this.deleteTask(id)
       })
+    },
+    openEditTask() {
+      this.showEditTask = true
     }
   }
 }
