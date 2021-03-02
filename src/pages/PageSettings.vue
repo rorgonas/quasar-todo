@@ -20,16 +20,24 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex'
+  import { mapGetters, mapActions } from 'vuex'
 
   export default {
     name: 'SettingsPage',
     computed: {
       ...mapGetters('settingsStore', ['settings']),
-      show12HourTimeFormat() {
-        return this.settings.show12HourTimeFormat
+      show12HourTimeFormat: {
+        get() {
+          return this.settings.show12HourTimeFormat
+        },
+        set(value) {
+          this.setShow12HourTimeFormat(value)
+        }
       }
-    }
+    },
+    methods: {
+      ...mapActions('settingsStore', ['setShow12HourTimeFormat'])
+    },
   }
 </script>
 
