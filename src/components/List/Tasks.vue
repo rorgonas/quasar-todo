@@ -4,8 +4,11 @@
     enter-active-class="animated zoomIn"
     leave-active-class="animated zoomOut absolute-top"
   >
-    <div>
-      <list-header :bgColor="bgColor">{{ title }}</list-header>
+    <div :class="{ 'q-mb-md': !settings.showTaskInOneList }">
+      <list-header
+        v-if="!settings.showTaskInOneList"
+        :bgColor="bgColor">{{ title }}
+      </list-header>
       <q-list separator>
         <task
           v-for="(task, key) in tasks"
@@ -19,6 +22,8 @@
 </template>
 
 <script>
+  import { mapGetters } from 'vuex'
+
   export default {
     name: 'TaskList',
     props: ['tasks', 'title', 'bgColor'],
@@ -26,5 +31,8 @@
       'task': require('components/Tasks/Task.vue').default,
       'list-header': require('components/Shared/ListHeader.vue').default,
     },
+    computed: {
+      ...mapGetters('settingsStore', ['settings'])
+    }
   }
 </script>

@@ -11,22 +11,20 @@
 
       <q-scroll-area class="scroll-area-task">
         <no-tasks
-          v-if="!Object.keys(tasksTodo).length && !search"
+          v-if="!Object.keys(tasksTodo).length && !search && !settings.showTaskInOneList"
           class="q-mb-md" />
 
         <task-list
           v-if="Object.keys(tasksTodo).length"
           :tasks="tasksTodo"
           title="Todo"
-          bgColor="bg-orange"
-          class="q-mb-md"/>
+          bgColor="bg-orange" />
 
         <task-list
           v-if="Object.keys(tasksCompleted).length"
           :tasks="tasksCompleted"
           title="Completed"
-          bgColor="bg-green"
-          class="q-mb-md"/>
+          bgColor="bg-green" />
       </q-scroll-area>
     </div>
 
@@ -63,6 +61,7 @@ export default {
   },
   computed: {
     ...mapGetters('storeTasks', ['tasksTodo', 'tasksCompleted']),
+    ...mapGetters('settingsStore', ['settings']),
     ...mapState('storeTasks', ['search'])
   },
   components: {
