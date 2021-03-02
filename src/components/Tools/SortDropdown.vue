@@ -31,10 +31,10 @@
       }
     },
     methods: {
-      ...mapActions('tasksStore', ['setSort']),
+      ...mapActions('storeTasks', ['setSort']),
     },
     computed: {
-      ...mapState('tasksStore', ['sort']),
+      ...mapState('storeTasks', ['sort']),
       sortBy: {
         get() {
           return this.sort

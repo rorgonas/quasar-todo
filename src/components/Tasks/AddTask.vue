@@ -41,7 +41,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions('tasksStore', ['createTask']),
+    ...mapActions('storeTasks', ['createTask']),
     submitTask() {
       this.createTask(this.taskToSubmit)
       this.$emit('close', true)

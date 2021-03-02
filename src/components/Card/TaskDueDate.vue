@@ -12,8 +12,7 @@
           <q-popup-proxy ref="qDateProxy" transition-show="scale" transition-hide="scale">
             <q-date
               :value="dueDate"
-              @input="$emit('update:dueDate', $event)"
-            >
+              @input="$emit('update:dueDate', $event).$refs.qDateProxy.hide()">
               <div class="row items-center justify-end">
                 <q-btn v-close-popup label="Close" color="primary" flat />
               </div>

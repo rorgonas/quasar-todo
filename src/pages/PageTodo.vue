@@ -62,8 +62,8 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('tasksStore', ['tasksTodo', 'tasksCompleted']),
-    ...mapState('tasksStore', ['search'])
+    ...mapGetters('storeTasks', ['tasksTodo', 'tasksCompleted']),
+    ...mapState('storeTasks', ['search'])
   },
   components: {
     'task': require('components/Tasks/Task.vue').default,

@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import tasksStore from './modules/tasks-store'
+import storeTasks from './modules/store-tasks'
+import settingsStore from './modules/settings-store'
 
 Vue.use(Vuex)
 
@@ -17,7 +18,8 @@ Vue.use(Vuex)
 export default function (/* { ssrContext } */) {
   const Store = new Vuex.Store({
     modules: {
-      tasksStore
+      storeTasks,
+      settingsStore
     },
 
     // enable strict mode (adds overhead!)

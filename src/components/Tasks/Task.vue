@@ -102,7 +102,7 @@ export default {
     'edit-task': require('components/Tasks/EditTask.vue').default
   },
   methods: {
-    ...mapActions('tasksStore', ['updateTask', 'deleteTask']),
+    ...mapActions('storeTasks', ['updateTask', 'deleteTask']),
     promptToDelete() {
       this.$q.dialog({
         title: 'Confirm',
@@ -121,7 +121,7 @@ export default {
     }
   },
   computed: {
-    ...mapState('tasksStore', ['search'])
+    ...mapState('storeTasks', ['search'])
   }
 }
 </script>

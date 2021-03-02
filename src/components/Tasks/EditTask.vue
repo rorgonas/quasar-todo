@@ -41,7 +41,7 @@ export default {
     this.taskToSubmit = Object.assign({}, this.task)
   },
   methods: {
-    ...mapActions('tasksStore', ['updateTask']),
+    ...mapActions('storeTasks', ['updateTask']),
     submitTask() {
       this.updateTask({
         id: this.id,

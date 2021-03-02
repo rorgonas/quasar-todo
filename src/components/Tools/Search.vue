@@ -22,7 +22,7 @@
   export default {
     name: 'Search',
     computed: {
-      ...mapState('tasksStore', ['search']),
+      ...mapState('storeTasks', ['search']),
       searchField: {
         get() {
           return this.search
@@ -33,7 +33,7 @@
       }
     },
     methods: {
-      ...mapActions('tasksStore', ['setSearch']),
+      ...mapActions('storeTasks', ['setSearch']),
     },
     directives: {
       selectAll
