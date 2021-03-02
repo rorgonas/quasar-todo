@@ -2,8 +2,11 @@
   <q-layout view="hHh lpR fFf">
     <q-header elevated>
       <q-toolbar color="primary">
-        <q-toolbar-title class="col-4">Awesome <strong>Todo</strong></q-toolbar-title>
-        <search class="col-8" />
+        <q-toolbar-title>Awesome <strong>Todo</strong></q-toolbar-title>
+        <div class="row q-pa-md q-gutter-sm">
+          <search />
+          <q-btn to='/auth' icon-right="account_circle" label="Login" />
+        </div>
       </q-toolbar>
     </q-header>
 
