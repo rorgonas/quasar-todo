@@ -1,8 +1,14 @@
 <template>
-  <q-item
+  <transition
+    appear
+    enter-active-class="animated fadeInLeft"
+    leave-active-class="animated fadeInRight"
+  >
+    <q-item
     @click="updateTask({ id: id, updates: { completed: !task.completed }})"
     :class="!task.completed ? 'bg-orange-1' : 'bg-green-1'"
     v-touch-hold:1000.mouse="openEditTask"
+    v-touch-swipe.mouse.left="userSwiped"
     clickable
     v-ripple>
     <q-item-section side top>
@@ -42,7 +48,7 @@
           icon="edit"
           size="16px" />
         <q-btn
-          @click.stop="promptToDelete(id)"
+          @click.stop="promptToDelete()"
           round
           flat
           dense
@@ -60,6 +66,7 @@
     </q-dialog>
 
   </q-item>
+  </transition>
 </template>
 
 <script>
@@ -96,18 +103,21 @@ export default {
   },
   methods: {
     ...mapActions('tasksStore', ['updateTask', 'deleteTask']),
-    promptToDelete(id) {
+    promptToDelete() {
       this.$q.dialog({
         title: 'Confirm',
         message: 'Really want to delete this task?',
         cancel: true,
         persistent: true
       }).onOk(() => {
-        this.deleteTask(id)
+        this.deleteTask(this.id)
       })
     },
     openEditTask() {
       this.showEditTask = true
+    },
+    userSwiped() {
+      this.promptToDelete()
     }
   },
   computed: {
