@@ -7,46 +7,11 @@
       </q-toolbar>
     </q-header>
 
-    <q-footer reveal elevated>
-      <q-tabs align="justify">
-        <q-route-tab
-          v-for="nav in navs"
-          :key="nav.label"
-          :to="nav.to"
-          :icon="nav.icon"
-          :label="nav.label" />
-      </q-tabs>
-    </q-footer>
+    <navigation-panel v-if="!$q.platform.is.mobile"/>
 
-    <q-drawer
-      v-model="leftDrawerOpen"
-      :breakpoint="768"
-      :width="250"
-      show-if-above
-      bordered
-      content-class="bg-primary"
-    >
-      <q-list dark>
-        <q-item-label header>
-          Navigation
-        </q-item-label>
-        <q-item
-          v-for="nav in navs"
-          :key="nav.label"
-          :to="nav.to"
-          exact
-          clickable
-          class="text-grey-4"
-        >
-          <q-item-section avatar>
-            <q-icon :name="nav.icon" />
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>{{ nav.label }}</q-item-label>
-          </q-item-section>
-        </q-item>
-      </q-list>
-    </q-drawer>
+    <q-footer v-if="$q.platform.is.mobile" reveal elevated>
+      <tab-panel />
+    </q-footer>
 
     <q-page-container>
       <router-view />
@@ -55,40 +20,20 @@
 </template>
 
 <script>
-export default {
-  name: 'Layout',
-  data () {
-    return {
-      leftDrawerOpen: false,
-      navs: [
-        {
-          label: 'Todo',
-          icon: 'list',
-          to: '/'
-        },
-        {
-          label: 'Settings',
-          icon: 'settings',
-          to: '/settings'
-        }
-      ]
+  export default {
+    name: 'Layout',
+    components: {
+      'search': require('components/Tools/Search.vue').default,
+      'navigation-panel': require('components/Shared/NavigationPanel.vue').default,
+      'tab-panel': require('components/Shared/TabPanel.vue').default,
     }
-  },
-  components: {
-    'search': require('components/Tools/Search.vue').default,
   }
-}
 </script>
 
 <style lang="scss">
-@media screen and (min-width: 768px) {
-  .q-footer {
-    display: none;
-      }
-    }
   .q-drawer, .q-footer {
     .q-router-link--exact-active {
       color: black !important;
     }
-}
+  }
 </style>

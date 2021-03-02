@@ -1,33 +1,47 @@
 import Vue from 'vue'
+import { LocalStorage } from 'quasar'
 
 const state = {
   settings: {
-    show12HourTimeFormat: true,
-    showTaskInOneList: false
-  }
+    show12HourTimeFormat: false,
+    showTaskInOneList: false,
+    localStorage: false
+  },
+  // storage: {
+  //   localStorage: false
+  // },
 }
 
 const mutations = {
-  SET_12_HOUR_TIME_FORMAT(state, value) {
-    state.settings.show12HourTimeFormat = value
+  SET_SETTINGS(state, options) {
+    state.settings = { ...state.settings, ...options }
   },
-  SET_SHOW_TASK_IN_ONE_LIST(state, value) {
-    state.settings.showTaskInOneList = value
-  }
 }
 
 const actions = {
-  setShow12HourTimeFormat({ commit }, value) {
-    commit('SET_12_HOUR_TIME_FORMAT', value)
+  setSettings({ commit, dispatch }, options) {
+    commit('SET_SETTINGS', options)
+    dispatch('saveSettings')
   },
-  setShowTaskInOneList({ commit }, value) {
-    commit('SET_SHOW_TASK_IN_ONE_LIST', value)
-  }
+  getSettings({ commit }) {
+    const settings = LocalStorage.getItem('settings')
+    if (settings) {
+      commit('SET_SETTINGS', settings)
+    }
+  },
+  saveSettings({ state }, options) {
+    if (state.settings.localStorage) {
+      LocalStorage.set('settings', state.settings)
+    }
+  },
 }
 
 const getters = {
   settings: state => {
     return state.settings
+  },
+  storage: state => {
+    return state.storage
   }
 }
 
