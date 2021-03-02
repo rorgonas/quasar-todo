@@ -1,32 +1,33 @@
 <template>
-  <q-page class="q-pa-md">
+  <q-page>
+    <div class="q-pa-md absolute full-width full-height column">
+      <div class="row justify-end">
+        <sort-dropdown />
+      </div>
 
-    <div class="row justify-end">
-      <sort-dropdown />
-    </div>
+      <p v-if="!Object.keys(tasksTodo).length && !Object.keys(tasksCompleted).length && search">
+        No search results
+      </p>
 
-    <p v-if="!Object.keys(tasksTodo).length && !Object.keys(tasksCompleted).length && search">
-      No search results
-    </p>
+      <q-scroll-area class="scroll-area-task">
+        <no-tasks
+          v-if="!Object.keys(tasksTodo).length && !search"
+          class="q-mb-md" />
 
-    <div class="relative-position">
-      <no-tasks
-        v-if="!Object.keys(tasksTodo).length && !search"
-        class="q-mb-md" />
+        <task-list
+          v-if="Object.keys(tasksTodo).length"
+          :tasks="tasksTodo"
+          title="Todo"
+          bgColor="bg-orange"
+          class="q-mb-md"/>
 
-      <task-list
-        v-if="Object.keys(tasksTodo).length"
-        :tasks="tasksTodo"
-        title="Todo"
-        bgColor="bg-orange"
-        class="q-mb-md"/>
-
-      <task-list
-        v-if="Object.keys(tasksCompleted).length"
-        :tasks="tasksCompleted"
-        title="Completed"
-        bgColor="bg-green"
-        class="q-mb-md"/>
+        <task-list
+          v-if="Object.keys(tasksCompleted).length"
+          :tasks="tasksCompleted"
+          title="Completed"
+          bgColor="bg-green"
+          class="q-mb-md"/>
+      </q-scroll-area>
     </div>
 
     <q-dialog v-model="showAddTask" transition-show="scale" transition-hide="scale" persistent>
@@ -35,11 +36,12 @@
 
 
     <div
-      class="absolute-bottom q-pa-md"
+      class="absolute-bottom q-pa-md no-pointer-events"
       :class="$q.platform.is.mobile ? 'text-center' : 'text-right'"
     >
       <q-btn
         @click="showAddTask = true"
+        class="all-pointer-events"
         round
         color="primary"
         size="24px"
@@ -84,5 +86,8 @@ export default {
 </script>
 
 <style scoped>
-
+  .scroll-area-task {
+    display: flex;
+    flex-grow: 1;
+  }
 </style>

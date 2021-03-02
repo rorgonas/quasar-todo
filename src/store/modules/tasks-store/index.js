@@ -25,6 +25,90 @@ const state = {
       dueDate: '2019/05/15',
       dueTime: '22:39'
     },
+    'ID4': {
+      id: 1,
+      name: 'Get bananas',
+      completed: false,
+      dueDate: '2019/05/12',
+      dueTime: '18:39'
+    },
+    'ID5': {
+      id: 2,
+      name: 'Go citrons',
+      completed: true,
+      dueDate: '2019/05/13',
+      dueTime: '20:39'
+    },
+    'ID6': {
+      id: 3,
+      name: 'Get apples',
+      completed: false,
+      dueDate: '2019/05/15',
+      dueTime: '22:39'
+    },
+    'ID7': {
+      id: 1,
+      name: 'Get bananas',
+      completed: false,
+      dueDate: '2019/05/12',
+      dueTime: '18:39'
+    },
+    'ID8': {
+      id: 2,
+      name: 'Go citrons',
+      completed: true,
+      dueDate: '2019/05/13',
+      dueTime: '20:39'
+    },
+    'ID9': {
+      id: 3,
+      name: 'Get apples',
+      completed: false,
+      dueDate: '2019/05/15',
+      dueTime: '22:39'
+    },
+    'ID10': {
+      id: 1,
+      name: 'Get bananas',
+      completed: false,
+      dueDate: '2019/05/12',
+      dueTime: '18:39'
+    },
+    'ID11': {
+      id: 2,
+      name: 'Go citrons',
+      completed: true,
+      dueDate: '2019/05/13',
+      dueTime: '20:39'
+    },
+    'ID12': {
+      id: 3,
+      name: 'Get apples',
+      completed: false,
+      dueDate: '2019/05/15',
+      dueTime: '22:39'
+    },
+    'ID13': {
+      id: 1,
+      name: 'Get bananas',
+      completed: false,
+      dueDate: '2019/05/12',
+      dueTime: '18:39'
+    },
+    'ID14': {
+      id: 2,
+      name: 'Go citrons',
+      completed: true,
+      dueDate: '2019/05/13',
+      dueTime: '20:39'
+    },
+    'ID15': {
+      id: 3,
+      name: 'Get apples',
+      completed: false,
+      dueDate: '2019/05/15',
+      dueTime: '22:39'
+    },
   },
   search: '',
   sort: 'name'
