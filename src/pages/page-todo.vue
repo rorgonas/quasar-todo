@@ -1,31 +1,43 @@
 <template>
   <q-page>
     <div class="q-pa-md absolute full-width full-height column">
-      <div class="row justify-end">
-        <sort-dropdown />
-      </div>
 
-      <p v-if="!Object.keys(tasksTodo).length && !Object.keys(tasksCompleted).length && search">
-        No search results
-      </p>
+      <template v-if="taskDownloaded">
+        <div class="row justify-end">
+          <sort-dropdown />
+        </div>
 
-      <q-scroll-area class="scroll-area-task">
-        <no-tasks
-          v-if="!Object.keys(tasksTodo).length && !search && !settings.showTaskInOneList"
-          class="q-mb-md" />
+        <p v-if="!Object.keys(tasksTodo).length && !Object.keys(tasksCompleted).length && search">
+          No search results
+        </p>
 
-        <task-list
-          v-if="Object.keys(tasksTodo).length"
-          :tasks="tasksTodo"
-          title="Todo"
-          bgColor="bg-orange" />
+        <q-scroll-area class="scroll-area-task">
+          <no-tasks
+            v-if="!Object.keys(tasksTodo).length && !search && !settings.showTaskInOneList"
+            class="q-mb-md" />
 
-        <task-list
-          v-if="Object.keys(tasksCompleted).length"
-          :tasks="tasksCompleted"
-          title="Completed"
-          bgColor="bg-green" />
-      </q-scroll-area>
+          <task-list
+            v-if="Object.keys(tasksTodo).length"
+            :tasks="tasksTodo"
+            title="Todo"
+            bgColor="bg-orange" />
+
+          <task-list
+            v-if="Object.keys(tasksCompleted).length"
+            :tasks="tasksCompleted"
+            title="Completed"
+            bgColor="bg-green" />
+        </q-scroll-area>
+      </template>
+      <template v-else>
+        <span class="absolute-center">
+          <q-spinner
+            color="primary"
+            size="3em"
+          />
+        </span>
+      </template>
+
     </div>
 
     <q-dialog v-model="showAddTask" transition-show="scale" transition-hide="scale" persistent>
@@ -62,7 +74,7 @@ export default {
   computed: {
     ...mapGetters('storeTasks', ['tasksTodo', 'tasksCompleted']),
     ...mapGetters('settingsStore', ['settings']),
-    ...mapState('storeTasks', ['search'])
+    ...mapState('storeTasks', ['search', 'taskDownloaded'])
   },
   components: {
     'task': require('components/tasks/task.vue').default,

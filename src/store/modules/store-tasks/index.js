@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import { uid } from 'quasar'
 import { firebaseDB, firebaseAuth } from 'boot/firebase'
+import { showErrorMessage, showSuccessMessage } from 'src/helpers/show-notification'
 
 const state = {
   showAddTaskModal: false,
@@ -28,7 +29,8 @@ const state = {
     // }
   },
   search: '',
-  sort: 'name'
+  sort: 'name',
+  taskDownloaded: false
 }
 
 const mutations = {
@@ -42,28 +44,34 @@ const mutations = {
   CREATE_TASK(state, payload) {
     Vue.set(state.tasks, payload.id, payload.task)
   },
+  CLEAR_TASKS(state) {
+    state.tasks = {}
+  },
   SET_SEARCH(state, value) {
     state.search = value
   },
   SET_SORT(state, value) {
     state.sort = value
-  }
+  },
+  SET_TASKS_DOWNLOADED(state, value) {
+    state.taskDownloaded = value
+  },
 }
 
 const actions = {
-  updateTask({ commit }, payload) {
-    commit('UPDATE_TASK', payload)
+  updateTask({ dispatch }, payload) {
+    dispatch('fbUpdateTask', payload)
   },
-  deleteTask({ commit }, id) {
-    commit('DELETE_TASK', id)
+  deleteTask({ dispatch }, id) {
+    dispatch('fbDeleteTask', id)
   },
-  createTask({ commit }, task) {
+  createTask({ dispatch }, task) {
     let taskId = uid()
     let payload = {
       id: taskId,
       task: task
     }
-    commit('CREATE_TASK', payload)
+    dispatch('fbAddTask', payload)
   },
   setSearch({ commit }, value) {
     commit('SET_SEARCH', value)
@@ -72,9 +80,16 @@ const actions = {
     commit('SET_SORT', value)
   },
   fbReadData({ commit }) {
-    console.log('start reading data from firebase')
     const userId = firebaseAuth.currentUser.uid
     const userTasks = firebaseDB.ref(`tasks/${userId}`)
+
+    // Initial check for data
+    userTasks.once('value', dataSnapshot => {
+      commit('SET_TASKS_DOWNLOADED', true)
+    }, error => {
+      commit('SET_TASKS_DOWNLOADED', false)
+      showErrorMessage('Permission denied ' + error.message)
+    })
 
     // Child added
     userTasks.on('child_added', dataSnapshot => {
@@ -101,6 +116,42 @@ const actions = {
       let taskId = dataSnapshot.key
       commit('DELETE_TASK', taskId)
     })
+  },
+
+  /*
+  * Add a new Task
+  * */
+  fbAddTask({}, payload) {
+    const userId = firebaseAuth.currentUser.uid
+    const taskRef = firebaseDB.ref(`tasks/${userId}/${payload.id}`)
+    taskRef.set(payload.task, error => {
+      showErrorMessage('Permission denied ' + error.message)
+    })
+  },
+
+  /*
+  * Update a Task
+  * */
+  fbUpdateTask({}, payload) {
+    const userId = firebaseAuth.currentUser.uid
+    const taskRef = firebaseDB.ref(`tasks/${userId}/${payload.id}`)
+    taskRef.update(payload.updates)
+  },
+
+  /*
+  * Delete a Task
+  * */
+  fbDeleteTask({}, id) {
+    const userId = firebaseAuth.currentUser.uid
+    const taskRef = firebaseDB.ref(`tasks/${userId}/${id}`)
+    taskRef.remove()
+      .then(() => {
+        showSuccessMessage('Remove succeeded.')
+      })
+      .catch( error => {
+        showErrorMessage('Remove failed:' + error.message)
+      })
+
   }
 }
 

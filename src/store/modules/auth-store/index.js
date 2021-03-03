@@ -53,6 +53,8 @@ const actions = {
         dispatch('storeTasks/fbReadData', null, { root: true })
       } else {
         commit('SET_LOGGED_IN', false)
+        commit('storeTasks/CLEAR_TASKS', null, { root: true })
+        commit('storeTasks/SET_TASKS_DOWNLOADED', false, { root: true })
         LocalStorage.set('loggedIn', false)
         this.$router.replace('/auth').catch(err => {})
       }
