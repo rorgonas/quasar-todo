@@ -2,23 +2,23 @@
 const routes = [
   {
     path: '/',
-    component: () => import('layouts/Layout.vue'),
+    component: () => import('layouts/layout.vue'),
     children: [
       {
         path: '',
-        component: () => import('pages/PageTodo.vue')
+        component: () => import('pages/page-todo.vue')
       },
       {
         path: 'settings',
-        component: () => import('pages/PageSettings.vue')
+        component: () => import('pages/page-settings.vue')
       },
       {
         path: 'settings/help',
-        component: () => import('pages/PageHelp.vue')
+        component: () => import('pages/page-help.vue')
       },
       {
         path: 'auth',
-        component: () => import('pages/PageAuth.vue')
+        component: () => import('pages/page-auth.vue')
       },
 
     ]
@@ -28,7 +28,7 @@ const routes = [
   // but you can also remove it
   {
     path: '*',
-    component: () => import('pages/Error404.vue')
+    component: () => import('pages/error404.vue')
   }
 ]
 

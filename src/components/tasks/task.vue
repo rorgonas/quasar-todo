@@ -99,7 +99,7 @@ export default {
     }
   },
   components: {
-    'edit-task': require('components/Tasks/EditTask.vue').default
+    'edit-task': require('components/tasks/edit-task.vue').default
   },
   methods: {
     ...mapActions('storeTasks', ['updateTask', 'deleteTask']),

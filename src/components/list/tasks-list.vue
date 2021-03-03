@@ -28,8 +28,8 @@
     name: 'TaskList',
     props: ['tasks', 'title', 'bgColor'],
     components: {
-      'task': require('components/Tasks/Task.vue').default,
-      'list-header': require('components/Shared/ListHeader.vue').default,
+      'task': require('components/tasks/task.vue').default,
+      'list-header': require('components/shared/list-header.vue').default,
     },
     computed: {
       ...mapGetters('settingsStore', ['settings'])

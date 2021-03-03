@@ -38,7 +38,7 @@
       }
     },
     components: {
-      'login-register-user': require('components/Auth/LoginRegister.vue').default,
+      'login-register-user': require('components/auth/login-register-user.vue').default,
     }
   }
 </script>

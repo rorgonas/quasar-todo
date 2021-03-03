@@ -65,11 +65,11 @@ export default {
     ...mapState('storeTasks', ['search'])
   },
   components: {
-    'task': require('components/Tasks/Task.vue').default,
-    'add-task': require('components/Tasks/AddTask.vue').default,
-    'task-list': require('components/List/Tasks.vue').default,
-    'no-tasks': require('components/Tasks/NoTasks.vue').default,
-    'sort-dropdown': require('components/Tools/SortDropdown.vue').default,
+    'task': require('components/tasks/task.vue').default,
+    'add-task': require('components/tasks/add-task.vue').default,
+    'task-list': require('components/list/tasks-list.vue').default,
+    'no-tasks': require('components/tasks/no-tasks.vue').default,
+    'sort-dropdown': require('components/tools/sort-dropdown.vue').default,
   },
   mounted() {
     // Quasar global even but listener

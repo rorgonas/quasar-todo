@@ -8,10 +8,10 @@ export default {
     },
   },
   components: {
-    'card-task-header': require('components/Card/TaskHeader.vue').default,
-    'card-task-field-name': require('components/Card/TaskFieldName.vue').default,
-    'card-task-due-date': require('components/Card/TaskDueDate.vue').default,
-    'card-task-due-time': require('components/Card/TaskDueTime.vue').default,
-    'card-task-actions': require('components/Card/TaskActions.vue').default
+    'card-task-header': require('components/card/task-header.vue').default,
+    'card-task-field-name': require('components/card/task-field-name.vue').default,
+    'card-task-due-date': require('components/card/task-due-date.vue').default,
+    'card-task-due-time': require('components/card/task-due-time.vue').default,
+    'card-task-actions': require('components/card/task-actions.vue').default
   },
 }

@@ -26,9 +26,9 @@
   export default {
     name: 'Layout',
     components: {
-      'search': require('components/Tools/Search.vue').default,
-      'navigation-panel': require('components/Shared/NavigationPanel.vue').default,
-      'tab-panel': require('components/Shared/TabPanel.vue').default,
+      'search': require('components/tools/Search.vue').default,
+      'navigation-panel': require('components/shared/navigation-panel.vue').default,
+      'tab-panel': require('components/shared/tab-panel.vue').default,
     }
   }
 </script>
