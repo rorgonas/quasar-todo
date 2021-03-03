@@ -6,6 +6,7 @@ import "firebase/analytics";
 
 // Add the Firebase products that you want to use
 import "firebase/auth";
+import "firebase/database"
 
 // Your web app's Firebase configuration
 import firebaseConfig from './../../firebase.config'
@@ -13,5 +14,6 @@ import firebaseConfig from './../../firebase.config'
 // Initialize Firebase
 let firebaseApp = firebase.initializeApp(firebaseConfig);
 let firebaseAuth = firebaseApp.auth()
+let firebaseDB = firebaseApp.database()
 
-export { firebaseAuth }
+export { firebaseAuth, firebaseDB }

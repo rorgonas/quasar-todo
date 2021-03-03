@@ -1,30 +1,31 @@
 import Vue from 'vue'
 import { uid } from 'quasar'
+import { firebaseDB, firebaseAuth } from 'boot/firebase'
 
 const state = {
   showAddTaskModal: false,
   tasks: {
-    'ID1': {
-      id: 1,
-      name: 'Get bananas',
-      completed: false,
-      dueDate: '2019/05/12',
-      dueTime: '18:39'
-    },
-    'ID2': {
-      id: 2,
-      name: 'Go citrons',
-      completed: true,
-      dueDate: '2019/05/13',
-      dueTime: '20:39'
-    },
-    'ID3': {
-      id: 3,
-      name: 'Get apples',
-      completed: false,
-      dueDate: '2019/05/15',
-      dueTime: '22:39'
-    }
+    // 'ID1': {
+    //   id: 1,
+    //   name: 'Get bananas',
+    //   completed: false,
+    //   dueDate: '2019/05/12',
+    //   dueTime: '18:39'
+    // },
+    // 'ID2': {
+    //   id: 2,
+    //   name: 'Go citrons',
+    //   completed: true,
+    //   dueDate: '2019/05/13',
+    //   dueTime: '20:39'
+    // },
+    // 'ID3': {
+    //   id: 3,
+    //   name: 'Get apples',
+    //   completed: false,
+    //   dueDate: '2019/05/15',
+    //   dueTime: '22:39'
+    // }
   },
   search: '',
   sort: 'name'
@@ -69,6 +70,37 @@ const actions = {
   },
   setSort({ commit }, value) {
     commit('SET_SORT', value)
+  },
+  fbReadData({ commit }) {
+    console.log('start reading data from firebase')
+    const userId = firebaseAuth.currentUser.uid
+    const userTasks = firebaseDB.ref(`tasks/${userId}`)
+
+    // Child added
+    userTasks.on('child_added', dataSnapshot => {
+      let task = dataSnapshot.val()
+      let payload = {
+        id: dataSnapshot.key,
+        task: task
+      }
+      commit('CREATE_TASK', payload)
+    })
+
+    // Child changes
+    userTasks.on('child_changed', dataSnapshot => {
+      let task = dataSnapshot.val()
+      let payload = {
+        id: dataSnapshot.key,
+        updates: task
+      }
+      commit('UPDATE_TASK', payload)
+    })
+
+    // Child removed
+    userTasks.on('child_removed', dataSnapshot => {
+      let taskId = dataSnapshot.key
+      commit('DELETE_TASK', taskId)
+    })
   }
 }
 
