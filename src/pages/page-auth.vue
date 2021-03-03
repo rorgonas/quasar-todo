@@ -34,7 +34,7 @@
     name: 'AuthPage',
     data () {
       return {
-        tab: 'register'
+        tab: 'login'
       }
     },
     components: {

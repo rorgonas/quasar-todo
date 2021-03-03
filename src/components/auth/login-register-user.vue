@@ -44,14 +44,16 @@
 </template>
 
 <script>
-export default {
+  import { mapActions } from 'vuex'
+
+  export default {
   name: 'LoginRegisterUser',
   props: ['tab'],
   data() {
     return {
       formData: {
-        email: null,
-        password: null
+        email: '',
+        password: ''
       }
     }
   },
@@ -61,6 +63,7 @@ export default {
     }
   },
   methods: {
+    ...mapActions('authStore', ['registerUser', 'loginUser']),
     isValidEmail(val) {
       let regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
       return val.match(regexEmail) && !!val
@@ -71,25 +74,17 @@ export default {
     validateForm() {
       this.$refs.email.validate()
       this.$refs.password.validate()
+
       return !this.$refs.email.hasError && !this.$refs.password.hasError
     },
     onSubmit() {
       if (this.validateForm()) {
-        console.log('submit')
         if (this.tab === 'login') {
-          this.login()
+          this.loginUser(this.formData)
         } else {
-          this.register()
+          this.registerUser(this.formData)
         }
-      } else {
-        console.log('check for errors')
       }
-    },
-    login() {
-      // action login
-    },
-    register() {
-      // action register
     }
   }
 }

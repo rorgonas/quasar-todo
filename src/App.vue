@@ -9,10 +9,12 @@
   export default {
     name: 'App',
     methods: {
-      ...mapActions('settingsStore', ['getSettings'])
+      ...mapActions('settingsStore', ['getSettings']),
+      ...mapActions('authStore', ['handleAuthStateChange'])
     },
     mounted() {
       this.getSettings()
+      this.handleAuthStateChange()
     }
   }
 </script>

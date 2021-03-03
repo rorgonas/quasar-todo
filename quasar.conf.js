@@ -23,7 +23,8 @@ module.exports = function (/* ctx */) {
     // https://quasar.dev/quasar-cli/boot-files
     boot: [
       'axios',
-      'firebase'
+      'firebase',
+      'router-auth'
     ],
 
     // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-css
@@ -100,7 +101,7 @@ module.exports = function (/* ctx */) {
       // directives: [],
 
       // Quasar plugins
-      plugins: ['Dialog', 'LocalStorage']
+      plugins: ['Dialog', 'LocalStorage', 'Notify', 'Loading']
     },
 
     // animations: 'all', // --- includes all animations
