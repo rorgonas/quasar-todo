@@ -7,9 +7,6 @@ const state = {
     showTaskInOneList: false,
     localStorage: false
   },
-  // storage: {
-  //   localStorage: false
-  // },
 }
 
 const mutations = {
