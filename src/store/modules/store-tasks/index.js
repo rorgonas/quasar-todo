@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import { uid } from 'quasar'
 import { firebaseDB, firebaseAuth } from 'boot/firebase'
-import { showErrorMessage, showSuccessMessage } from 'src/helpers/show-notification'
+import { showErrorMessage, showSuccessMessage } from 'src/helpers/show-message'
 
 const state = {
   showAddTaskModal: false,
@@ -87,8 +87,8 @@ const actions = {
     userTasks.once('value', dataSnapshot => {
       commit('SET_TASKS_DOWNLOADED', true)
     }, error => {
-      commit('SET_TASKS_DOWNLOADED', false)
-      showErrorMessage('Permission denied ' + error.message)
+      showErrorMessage(error.message)
+      this.$router.replace('/auth')
     })
 
     // Child added
@@ -124,8 +124,13 @@ const actions = {
   fbAddTask({}, payload) {
     const userId = firebaseAuth.currentUser.uid
     const taskRef = firebaseDB.ref(`tasks/${userId}/${payload.id}`)
+
     taskRef.set(payload.task, error => {
-      showErrorMessage('Permission denied ' + error.message)
+      if (error) {
+        showErrorMessage(error.message)
+      } else {
+        showSuccessMessage('Task added!')
+      }
     })
   },
 
@@ -135,7 +140,17 @@ const actions = {
   fbUpdateTask({}, payload) {
     const userId = firebaseAuth.currentUser.uid
     const taskRef = firebaseDB.ref(`tasks/${userId}/${payload.id}`)
-    taskRef.update(payload.updates)
+
+    taskRef.update(payload.updates, error => {
+      if (error) {
+        showErrorMessage(error.message)
+      } else {
+        let keys = Object.keys(payload.updates)
+        if (keys.includes('completed') && keys.length !== 1) {
+          showSuccessMessage('Task updated!')
+        }
+      }
+    })
   },
 
   /*
@@ -144,14 +159,14 @@ const actions = {
   fbDeleteTask({}, id) {
     const userId = firebaseAuth.currentUser.uid
     const taskRef = firebaseDB.ref(`tasks/${userId}/${id}`)
-    taskRef.remove()
-      .then(() => {
-        showSuccessMessage('Remove succeeded.')
-      })
-      .catch( error => {
-        showErrorMessage('Remove failed:' + error.message)
-      })
 
+    taskRef.remove(error => {
+      if (error) {
+        showErrorMessage(error.message)
+      } else {
+        showSuccessMessage('Task deleted!')
+      }
+    })
   }
 }
 

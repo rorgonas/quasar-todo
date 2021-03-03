@@ -1,4 +1,4 @@
-import { showErrorMessage, showSuccessMessage } from 'src/helpers/show-notification'
+import { showErrorMessage, showSuccessMessage } from 'src/helpers/show-message'
 import { LocalStorage, Loading } from 'quasar'
 import { firebaseAuth } from "boot/firebase";
 
