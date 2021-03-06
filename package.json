@@ -7,7 +7,11 @@
   "private": true,
   "scripts": {
     "test": "echo \"No test specified\" && exit 0",
-    "dev": "QENV=development quasar dev"
+    "icons": "icongenie generate -i app-icon.png --skip-trim",
+    "dev": "QENV=development quasar dev",
+    "build-web": "QENV=production quasar build",
+    "firebase-init": "firebase init",
+    "firebase-deploy": "firebase deploy"
   },
   "dependencies": {
     "@quasar/extras": "^1.0.0",

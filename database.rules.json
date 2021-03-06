@@ -1,0 +1,10 @@
+{
+  "rules": {
+    "foods": {
+      "$uid": {
+        ".read": "auth.uid === $uid",
+    		".write": "auth.uid === $uid",
+      }
+    }
+  }
+}

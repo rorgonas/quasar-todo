@@ -4,12 +4,24 @@ import { firebaseAuth } from "boot/firebase";
 
 const state = {
   loggedIn: false,
+  user: {
+    id: null,
+    email: null
+  }
 }
 
 const mutations = {
   SET_LOGGED_IN(state, value) {
     state.loggedIn = value
-  }
+  },
+  SET_USER(state, user) {
+    if (user) {
+      state.user.id = user.uid
+      state.user.email = user.email
+    } else {
+      state.user = {}
+    }
+  },
 }
 
 const actions = {
@@ -49,10 +61,12 @@ const actions = {
       if (user) {
         commit('SET_LOGGED_IN', true)
         LocalStorage.set('loggedIn', true)
+        commit('SET_USER', user)
         this.$router.push('/').catch(err => {})
         dispatch('storeTasks/fbReadData', null, { root: true })
       } else {
         commit('SET_LOGGED_IN', false)
+        commit('SET_USER', user)
         commit('storeTasks/CLEAR_TASKS', null, { root: true })
         commit('storeTasks/SET_TASKS_DOWNLOADED', false, { root: true })
         LocalStorage.set('loggedIn', false)
