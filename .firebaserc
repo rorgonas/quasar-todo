@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "foods-fab59"
+    "default": "awesome-todo-d13b9",
+    "todos-staging": "awesome-todo-d13b9"
   }
 }

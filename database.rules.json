@@ -1,9 +1,9 @@
 {
   "rules": {
-    "foods": {
+    "tasks": {
       "$uid": {
-        ".read": "auth.uid === $uid",
-    		".write": "auth.uid === $uid",
+        ".read": "auth.uid == $uid",  // 2021-4-2
+    		".write": "auth.uid == $uid",  // 2021-4-2
       }
     }
   }
