@@ -3,7 +3,8 @@
     <div class="q-pa-md absolute full-width full-height column">
 
       <template v-if="taskDownloaded">
-        <div class="row justify-end">
+        <div class="row q-mb-lg">
+          <search-bar />
           <sort-dropdown />
         </div>
 
@@ -82,6 +83,7 @@ export default {
     'task-list': require('components/list/tasks-list.vue').default,
     'no-tasks': require('components/tasks/no-tasks.vue').default,
     'sort-dropdown': require('components/tools/sort-dropdown.vue').default,
+    'search-bar': require('components/tools/search-bar.vue').default,
   },
   mounted() {
     // Quasar global even but listener

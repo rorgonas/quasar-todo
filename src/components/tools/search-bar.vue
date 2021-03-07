@@ -2,9 +2,10 @@
     <q-input
       v-model="searchField"
       @keyup.esc="searchField = ''"
-      placeholer="Search"
-      standout="bg-teal text-white"
+      label="Search"
+      class="col"
       v-select-all
+      outlined
       dense>
 
       <template v-slot:append>

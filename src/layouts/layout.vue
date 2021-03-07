@@ -4,8 +4,6 @@
       <q-toolbar color="primary">
         <q-toolbar-title>Awesome <strong>Todo</strong></q-toolbar-title>
         <div class="row q-pa-md q-gutter-sm">
-          <search-bar />
-
           <q-btn
             v-if="!loggedIn"
             to='/auth'
@@ -39,7 +37,6 @@
   export default {
     name: 'Layout',
     components: {
-      'search-bar': require('components/tools/search-bar.vue').default,
       'navigation-panel': require('components/shared/navigation-panel.vue').default,
       'tab-panel': require('components/shared/tab-panel.vue').default,
     },

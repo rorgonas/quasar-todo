@@ -6,7 +6,7 @@
     :options="options"
     emit-value
     map-options
-    class="q-mb-md"
+    class="col q-ml-sm"
     label="Sort By"
     stack-label />
 
@@ -49,6 +49,6 @@
 
 <style scoped lang="scss">
   .q-select {
-    width: 112px
+    flex: 0 0 112px;
   }
 </style>
