@@ -96,7 +96,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
   .scroll-area-task {
     display: flex;
     flex-grow: 1;

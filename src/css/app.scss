@@ -1,1 +1,17 @@
 // app global css in SCSS form
+.body--light {
+  &.electron {
+    .q-page-container {
+      background-color: #fff !important;
+    }
+  }
+}
+
+.body--dark {
+  .q-item {
+    background: rgba(255, 255, 255, 0.07) !important;
+  }
+  .q-banner {
+    color: #000
+  }
+}

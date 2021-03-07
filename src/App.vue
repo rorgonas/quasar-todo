@@ -9,11 +9,11 @@
   export default {
     name: 'App',
     methods: {
-      ...mapActions('settingsStore', ['getSettings']),
+      ...mapActions('settingsStore', ['loadSettings']),
       ...mapActions('authStore', ['handleAuthStateChange'])
     },
     mounted() {
-      this.getSettings()
+      this.loadSettings()
       this.handleAuthStateChange()
     }
   }

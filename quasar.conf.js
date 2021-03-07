@@ -24,7 +24,8 @@ module.exports = function (/* ctx */) {
     boot: [
       'axios',
       'firebase',
-      'router-auth'
+      'router-auth',
+      'theme-ui'
     ],
 
     // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-css
@@ -86,7 +87,9 @@ module.exports = function (/* ctx */) {
     framework: {
       iconSet: 'material-icons', // Quasar icon set
       lang: 'en-us', // Quasar language pack
-      config: {},
+      config: {
+        dark: 'auto' // or Boolean true/false
+      },
 
       // Possible values for "importStrategy":
       // * 'auto' - (DEFAULT) Auto-import needed Quasar components & directives

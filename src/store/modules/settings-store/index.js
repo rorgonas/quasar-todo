@@ -1,9 +1,10 @@
-import { LocalStorage } from 'quasar'
+import { LocalStorage, Dark } from 'quasar'
 
 const state = {
   settings: {
     show12HourTimeFormat: false,
     showTaskInOneList: false,
+    showTaskInDarkMode: Dark.mode,  // get configured status. default is set to "auto"
     localStorage: false
   },
 }
@@ -19,13 +20,13 @@ const actions = {
     commit('SET_SETTINGS', options)
     dispatch('saveSettings')
   },
-  getSettings({ commit }) {
+  loadSettings({ commit }) {
     const settings = LocalStorage.getItem('settings')
     if (settings) {
       commit('SET_SETTINGS', settings)
     }
   },
-  saveSettings({ state }, options) {
+  saveSettings({ state }) {
     if (state.settings.localStorage) {
       LocalStorage.set('settings', state.settings)
     }

@@ -28,6 +28,21 @@
       </q-item>
 
       <br />
+      <q-item-label header>UI Theme</q-item-label>
+
+      <q-item tag="label" v-ripple>
+        <q-item-section>
+          <q-item-label>Activate dark mode</q-item-label>
+        </q-item-section>
+        <q-item-section side >
+          <q-toggle
+            color="blue"
+            v-model="showTaskInDarkMode"
+            val="battery" />
+        </q-item-section>
+      </q-item>
+
+      <br />
       <q-item-label header>Make your preferences persistent</q-item-label>
 
       <q-item tag="label" v-ripple>
@@ -108,6 +123,15 @@
         },
         set(value) {
           this.setSettings({ showTaskInOneList: value })
+        }
+      },
+      showTaskInDarkMode: {
+        get() {
+          return this.settings.showTaskInDarkMode
+        },
+        set(value) {
+          this.$q.dark.set(value)
+          this.setSettings({ showTaskInDarkMode: value })
         }
       },
       useLocalStorage: {
