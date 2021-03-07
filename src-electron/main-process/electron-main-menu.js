@@ -10,6 +10,7 @@ const menuTemplate = [
       { role: 'about' },
       {
         label: 'Settings',
+        accelerator: process.platform === 'darwin' ? 'Alt+Cmd+S' : 'Alt+Shift+S',
         click() {
           mainWindow.webContents.send('show-settings')
         }
