@@ -2,7 +2,7 @@
   <q-layout view="hHh lpR fFf">
     <q-header elevated>
       <q-toolbar color="primary">
-        <q-toolbar-title>Awesome <strong>Todo</strong></q-toolbar-title>
+        <q-toolbar-title>{{ appName }}</q-toolbar-title>
         <div class="row q-pa-md q-gutter-sm">
           <q-btn
             v-if="!loggedIn"
@@ -36,6 +36,11 @@
 
   export default {
     name: 'Layout',
+    data() {
+      return {
+        appName: this.$q.config.app.name
+      }
+    },
     components: {
       'navigation-panel': require('components/shared/navigation-panel.vue').default,
       'tab-panel': require('components/shared/tab-panel.vue').default,

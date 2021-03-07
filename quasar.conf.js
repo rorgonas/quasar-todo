@@ -10,7 +10,7 @@
 // Your web app's Firebase configuration
 // import firebaseConfig from './firebase.config'
 
-module.exports = function (/* ctx */) {
+module.exports = function (ctx) {
   return {
     // https://quasar.dev/quasar-cli/supporting-ts
     supportTS: false,
@@ -51,10 +51,6 @@ module.exports = function (/* ctx */) {
     build: {
       vueRouterMode: 'history', // available values: 'hash', 'history'
 
-      env: {
-        API: 'test'
-      },
-
       // transpile: false,
 
       // Add dependencies for transpiling with Babel (Array of string/regex)
@@ -88,7 +84,10 @@ module.exports = function (/* ctx */) {
       iconSet: 'material-icons', // Quasar icon set
       lang: 'en-us', // Quasar language pack
       config: {
-        dark: 'auto' // or Boolean true/false
+        dark: 'false', // "auto or "Boolean true/false,
+        app: {
+          name: process.env.npm_package_productName
+        }
       },
 
       // Possible values for "importStrategy":
