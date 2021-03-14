@@ -60,4 +60,11 @@
       color: black !important;
     }
   }
+
+  .platform-ios {
+    .q-footer {
+      padding-bottom: constant(safe-area-inset-top);
+      padding-bottom: env(safe-area-inset-top);
+    }
+  }
 </style>

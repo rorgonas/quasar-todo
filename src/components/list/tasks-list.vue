@@ -36,3 +36,9 @@
     }
   }
 </script>
+
+<style lang="scss">
+  .q-banner {
+    opacity: 0.5;
+  }
+</style>

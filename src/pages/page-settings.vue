@@ -146,7 +146,7 @@
     methods: {
       ...mapActions('settingsStore', ['setSettings']),
       visitOurWebsite() {
-        openURL('https://rollandpage.com/')
+        openURL('https://quasar.dev/quasar-cli/developing-mobile-apps')
       },
       emailUs() {
         window.location.href = 'mailto:rorgonas@gmail.com?subject=Awesome Todo Feedback'

@@ -15,6 +15,7 @@
         outlined
         autofocus
         v-model="formData.email"
+        type="email"
         ref="email"
         class="col"
         label="Email"

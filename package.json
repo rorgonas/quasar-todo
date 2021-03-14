@@ -13,7 +13,8 @@
     "firebase-init": "firebase init",
     "firebase-deploy": "firebase deploy",
     "electron-dev": "QENV=development quasar dev -m electron",
-    "electron-build": "QENV=production quasar build -m electron"
+    "electron-build": "QENV=production quasar build -m electron",
+    "ios": "QENV=development quasar dev -m cordova -T ios"
   },
   "dependencies": {
     "@quasar/extras": "^1.0.0",

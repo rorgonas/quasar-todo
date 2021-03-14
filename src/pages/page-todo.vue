@@ -21,13 +21,13 @@
             v-if="Object.keys(tasksTodo).length"
             :tasks="tasksTodo"
             title="Todo"
-            bgColor="bg-orange" />
+            bgColor="bg-yellow-8" />
 
           <task-list
             v-if="Object.keys(tasksCompleted).length"
             :tasks="tasksCompleted"
             title="Completed"
-            bgColor="bg-green" />
+            bgColor="bg-light-green-8" />
         </q-scroll-area>
       </template>
       <template v-else>
@@ -54,7 +54,7 @@
         @click="showAddTask = true"
         class="all-pointer-events"
         round
-        color="primary"
+        color="accent"
         size="24px"
         icon="add"
       />
@@ -102,5 +102,9 @@ export default {
   .scroll-area-task {
     display: flex;
     flex-grow: 1;
+
+    .mobile & {
+      flex-basis: 100px;
+    }
   }
 </style>
