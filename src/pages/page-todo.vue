@@ -47,7 +47,7 @@
 
 
     <div
-      class="absolute-bottom q-pa-md no-pointer-events"
+      class="absolute-bottom q-pa-md no-pointer-events add-task"
       :class="$q.platform.is.mobile ? 'text-center' : 'text-right'"
     >
       <q-btn
@@ -105,6 +105,12 @@ export default {
 
     .mobile & {
       flex-basis: 100px;
+    }
+  }
+  .add-task {
+    .mobile & {
+      z-index: 3000;
+      bottom: -50px;
     }
   }
 </style>

@@ -61,10 +61,15 @@
     }
   }
 
-  .platform-ios {
-    .q-footer {
-      padding-bottom: constant(safe-area-inset-top);
-      padding-bottom: env(safe-area-inset-top);
-    }
-  }
+  /* Platform specific fix: deprecated fix  */
+  //.platform-ios {
+  //  .q-header {
+  //    padding-top: constant(safe-area-inset-top);
+  //    padding-top: env(safe-area-inset-top);
+  //  }
+  //  .q-footer {
+  //    padding-bottom: constant(safe-area-inset-top);
+  //    padding-bottom: env(safe-area-inset-top);
+  //  }
+  //}
 </style>

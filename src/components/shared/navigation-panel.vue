@@ -15,9 +15,9 @@
         v-for="nav in navs"
         :key="nav.label"
         :to="nav.to"
+        class="text-grey-4"
         exact
         clickable
-        class="text-grey-4"
       >
         <q-item-section avatar>
           <q-icon :name="nav.icon" />

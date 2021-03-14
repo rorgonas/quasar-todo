@@ -57,3 +57,22 @@ Note: Check saved ```cat .firebaserc``` config to see/update manually changes
     - configure single-spa app (rewrite /index.html) -> select No
     - dist/spa/index.html already exist. Overwrite? -> select No
 3.  ```firebase deploy```
+
+# Mobile platform
+## List all ios devices
+```
+cd src-cordova
+run ios --list
+```
+
+## Test with Xcode simulator
+```quasar run -m cordova -T -e "iPhone-12, 14.4""```
+
+## Lunch on real device
+Important: Before deploy to real device need to run code below in terminal.
+Note: If still not working, close Xcode and deploy again.
+```
+cordova prepare ios
+quasar dev -m cordova -T ios
+```
+
