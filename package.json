@@ -7,7 +7,7 @@
   "private": true,
   "scripts": {
     "test": "echo \"No test specified\" && exit 0",
-    "icons": "icongenie generate -i src/icon/app-icon.png --skip-trim --theme-color 98b898",
+    "icons": "icongenie generate -i src/icons/app-icon.png --skip-trim --theme-color 98b898",
     "dev": "QENV=development quasar dev",
     "build": "QENV=production quasar build",
     "firebase-init": "firebase init",
@@ -16,7 +16,8 @@
     "electron-build": "QENV=production quasar build -m electron",
     "ios-dev": "QENV=development quasar dev -m cordova -T ios",
     "ios-build": "QENV=development quasar build -m cordova -T ios",
-    "android-dev": "QENV=development quasar dev -m cordova -T android"
+    "android-dev": "QENV=development quasar dev -m cordova -T android",
+    "android-build": "QENV=development quasar build -m cordova -T android"
   },
   "dependencies": {
     "@quasar/extras": "^1.0.0",

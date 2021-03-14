@@ -3,28 +3,6 @@ import { mainWindow } from './electron-main'
 
 const isMac = process.platform === 'darwin'
 const menuTemplate = [
-  // { role: 'appMenu' }
-  ...(isMac ? [{
-    label: app.name,
-    submenu: [
-      { role: 'about' },
-      {
-        label: 'Settings',
-        accelerator: process.platform === 'darwin' ? 'Alt+Cmd+S' : 'Alt+Shift+S',
-        click() {
-          mainWindow.webContents.send('show-settings')
-        }
-      },
-      { type: 'separator' },
-      { role: 'services' },
-      { type: 'separator' },
-      { role: 'hide' },
-      { role: 'hideothers' },
-      { role: 'unhide' },
-      { type: 'separator' },
-      { role: 'quit' }
-    ]
-  }] : []),
   // { role: 'fileMenu' }
   {
     label: 'File',
@@ -105,6 +83,32 @@ const menuTemplate = [
     ]
   }
 ]
+
+
+// role: 'appMenu'
+if (isMac) {
+  menuTemplate.unshift({
+    label: app.name,
+    submenu: [
+      { role: 'about' },
+      {
+        label: 'Settings',
+        accelerator: process.platform === 'darwin' ? 'Alt+Cmd+S' : 'Alt+Shift+S',
+        click() {
+          mainWindow.webContents.send('show-settings')
+        }
+      },
+      { type: 'separator' },
+      { role: 'services' },
+      { type: 'separator' },
+      { role: 'hide' },
+      { role: 'hideothers' },
+      { role: 'unhide' },
+      { type: 'separator' },
+      { role: 'quit' }
+    ]
+  })
+}
 
 export default { menuTemplate }
 export { menuTemplate }

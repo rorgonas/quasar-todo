@@ -18,7 +18,6 @@ if (process.env.PROD) {
 export let mainWindow
 
 const menu = Menu.buildFromTemplate(menuTemplate)
-Menu.setApplicationMenu(menu)
 
 function createWindow () {
   /**
@@ -40,6 +39,8 @@ function createWindow () {
       // preload: path.resolve(__dirname, 'electron-preload.js')
     }
   })
+
+  Menu.setApplicationMenu(menu)
 
   mainWindow.loadURL(process.env.APP_URL)
 
