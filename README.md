@@ -1,5 +1,8 @@
 # Quasar App (quasar-todo)
 
+![Screen Shot 2021-10-04 at 10 00 23 AM](https://user-images.githubusercontent.com/1928898/135864924-9c85ff8a-89fc-4f93-8c9d-d3f530594e01.png)
+
+
 A Quasar Framework app
 
 ## Install the dependencies
