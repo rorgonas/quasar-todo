@@ -1,8 +1,8 @@
 # Quasar App (quasar-todo)
 
-Solarized dark             |  Solarized Ocean
+Signup Page             |  Settings Page
 :-------------------------:|:-------------------------:
-![](https://...Dark.png)  |  ![](https://...Ocean.png)
+![Screen Shot 2021-10-04 at 10 00 23 AM](https://user-images.githubusercontent.com/1928898/135864924-9c85ff8a-89fc-4f93-8c9d-d3f530594e01.png)  |  ![Screen Shot 2021-10-04 at 10 22 12 AM](https://user-images.githubusercontent.com/1928898/135868542-9b0b7db3-1ea4-4ec3-99a3-8c8825460014.png) (https://...Ocean.png)
 
 ![Screen Shot 2021-10-04 at 10 00 23 AM](https://user-images.githubusercontent.com/1928898/135864924-9c85ff8a-89fc-4f93-8c9d-d3f530594e01.png) 
 ![Screen Shot 2021-10-04 at 10 22 12 AM](https://user-images.githubusercontent.com/1928898/135868542-9b0b7db3-1ea4-4ec3-99a3-8c8825460014.png) 
